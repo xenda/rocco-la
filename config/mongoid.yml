@@ -6,15 +6,14 @@ mongohq:
   database: <%= mongohq.path.sub '/', '' %>
   username: <%= mongohq.user %>
   password: <%= mongohq.password %>
-<% end %>
-development:
-  host: localhost
-  database: rocco_la_development
-
-test:
-  host: localhost
-  database: rocco_la_test
-
+production:
+  host: <%= mongohq.host %>
+  port: <%= mongohq.port %>
+  database: <%= mongohq.path.sub '/', '' %>
+  username: <%= mongohq.user %>
+  password: <%= mongohq.password %>
+  
+<% else %>
 # set these environment variables on your prod server
 production:
   host: <%= ENV['MONGOID_HOST'] %>
@@ -27,3 +26,13 @@ production:
   #     port: 27018
   #   - host: slave2.local
   #     port: 27019
+
+<% end %>
+development:
+  host: localhost
+  database: rocco_la_development
+
+test:
+  host: localhost
+  database: rocco_la_test
+
