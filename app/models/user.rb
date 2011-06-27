@@ -5,4 +5,6 @@ class User
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  embedded_in :dj, class_name: "UserQueue", inverse_of: :user
+
 end
