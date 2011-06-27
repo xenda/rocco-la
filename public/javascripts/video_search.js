@@ -13,4 +13,4 @@ $('#video_search').submit(function(event){
   });
 });
 
-});
+  });
