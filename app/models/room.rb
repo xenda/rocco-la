@@ -3,5 +3,5 @@ class Room
 
   field :name, :type => String
   field :description
-  embeds_many :users
+  has_many :users
 end
