@@ -12,6 +12,42 @@ div#main.wrapper {
 	-moz-border-radius: 10px;
 	border-radius: 10px;*/
 	background-color: white;
+	overflow: auto;
+}
+
+div#sidebar {
+	float: left;
+	width: 270px;	
+}
+
+#sidebar h2 {
+	font-size: 14px;
+	color: #a75d34;
+}
+
+ul#results {
+	padding: 0;
+	height: 200px;
+	overflow: scroll;
+	margin: 0px;
+
+}
+ul#results li {
+	margin-bottom: 10px;
+	overflow: auto;
+}
+
+ul#results li img {
+	float: left;
+	margin-right: 5px;
+	width: 100px;
+}
+
+ul#results li a {
+	color: #a75d34;
+	text-decoration: none;
+	font: 12px Georgia, "Times New Roman", Times, serif;
+	text-transform: capitalize;
 }
 
 #footer p {
@@ -45,6 +81,11 @@ div#status span#current {
 
 div#status span#total_duration {
 	color: #a05a33;
+}
+
+div#content_column {
+	float: left;
+	margin-right: 10px;
 }
 
 

@@ -3,6 +3,7 @@ RoccoLa::Application.routes.draw do
   resources :songs do
     collection do
       get 'current'
+      get 'next'
     end
   end
   match '/add_to_queue' => 'home#add_to_queue'

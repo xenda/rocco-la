@@ -2,12 +2,15 @@
   #vidplayer
     You need Flash player 8+ and JavaScript enabled to view this video.
 
-%ul#queue
-  - @songs.each do |song|
-    %li
-      = song.title
-
 #sidebar
+
+  %h2 Current playlist
+  %ul#queue
+    - @songs.each do |song|
+      %li
+        = song.title
+
+  %h2 Add a new 
   %form#video_search
     %p
       %input{:type => "text", :name => "query", :id => "query"}

@@ -36,7 +36,7 @@ function playerStatus(state){
 function videoStatusUpdate(state) {
    yt_status("Estado: " + playerStatus(state));
    if (state == FINISHED){
-     loadCurrentVideo();
+     loadNextVideo();
    }
    
 }
@@ -93,6 +93,13 @@ function loadVideo(videoId,startSeconds){
 function loadCurrentVideo(){
   
   $.getJSON('/songs/current.json', function(data){
+    loadVideo(data['video_id'],data['play_to']);
+  });
+}
+
+function loadNextVideo(){
+  
+  $.getJSON('/songs/next.json', function(data){
     loadVideo(data['video_id'],data['play_to']);
   });
 }

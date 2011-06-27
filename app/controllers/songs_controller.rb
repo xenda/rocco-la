@@ -7,9 +7,7 @@ class SongsController < InheritedResources::Base
     unless user_queue.songs.empty?
       current_time = Time.now
       unless user_queue.current_song 
-        user_queue.current_song = user_queue.songs.last.youtube_id
-        user_queue.started_at = current_time 
-        user_queue.save
+        user_queue.load_next_song(current_time)
       end
       play_to = current_time - user_queue.started_at
       video_id = user_queue.current_song
@@ -17,6 +15,17 @@ class SongsController < InheritedResources::Base
     else
       render :json => {:video_id => "57tK6aQS_H0", :play_to => 0, :title => ""}
     end
+  end
+  
+  def next
+    user_queue = UserQueue.last
+    current_time = Time.now
+    user_queue.load_next_song(current_time)
+    play_to = 0
+    video_id = user_queue.current_song
+    logger.info play_to
+    logger.info video_id
+    render :json => {:video_id => video_id, :play_to => play_to, :title => ""}
   end
   
 end
