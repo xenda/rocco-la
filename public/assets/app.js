@@ -453,7 +453,9 @@ $(function() {
       data: video,
       type: 'POST',
       success: function(data){
-        console.log(data);
+        if(data){
+          $('#queue').prepend('<li>'+data.title+'</li>');
+        }
       }
     });
   });
