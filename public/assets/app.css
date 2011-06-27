@@ -1,1 +1,46 @@
-body{background-color:#f0f1e3}div#main.wrapper{padding:10px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;background-color:white}#footer p{text-align:center;font-size:11px;color:#3d3d3d}#footer p a{color:#df7246;text-decoration:none}#header h1{background-image:url(../images/logo.png?1309134290);height:90px;width:300px;text-indent:-9999px;margin:0}#header h2{display:none}.wrapper{width:920px;margin:0 auto}div{font:16px Georgia,"Times New Roman",Times,serif;color:#575757}
+/* @override http://localhost:3000/stylesheets/layout.css?1309134588 
+	http://localhost:3000/stylesheets/layout.css
+*/
+
+body {
+	background-color: #f0f1e3;
+}
+
+div#main.wrapper {
+	padding: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background-color: white;
+}
+
+#footer p {
+	text-align: center;
+	font-size: 11px;
+	color: #3d3d3d;
+}
+#footer p a {
+	color: #df7246;
+	text-decoration: none;
+}
+#header h1 {
+	background-image: url(../images/logo.png?1309135778);
+	height: 90px;
+	width: 300px;
+	text-indent: -9999px;
+	margin: 0px;
+}
+
+#header h2 {
+	display: none;
+}
+
+.wrapper {
+	width:  920px;
+	margin: 0px auto;
+}
+
+div {
+	font: 16px Georgia, "Times New Roman", Times, serif;
+	color: #575757;
+}
