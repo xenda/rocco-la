@@ -39,6 +39,7 @@ ul#queue li {
 	font: 14px Georgia, "Times New Roman", Times, serif;
 	color: #a75d34;
 	border-bottom: 1px solid #dad9c8;
+	list-style: none;
 }
 
 ul#queue li:hover {

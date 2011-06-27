@@ -12,13 +12,17 @@ $(function() {
 
     var pusher = new Pusher('d80ab8b828a435a50beb');
     var channel = pusher.subscribe('global_room');
+    
     channel.bind('playlist:add_to_queue', function(data) {
-      // alert(data);
-      
-      
-          $('#queue').prepend('<li id="song_'+data["_id"]+'">'+data['title']+'<small><a class="remove_from_playlist" href="#" id="'+data["_id"]+'">Remove</a></small></li>');      
-      
+      $('#queue').prepend('<li id="song_'+data["_id"]+'">'+data['title']+'<small><a class="remove_from_playlist" href="#" id="'+data["_id"]+'">Remove</a></small></li>');      
     });
+    
+    
+    channel.bind('playlist:remove_from_queue', function(data) {
+      console.log('song_'+data["id"]);
+      $('#song_'+data["id"]).remove();
+    });    
+    
     
     
 

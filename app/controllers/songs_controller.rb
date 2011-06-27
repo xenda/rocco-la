@@ -29,7 +29,10 @@ class SongsController < InheritedResources::Base
 
   def destroy
     destroy!{|success,failure|
-      success.json { render :json => true }
+      success.json { 
+        Pusher['global_room'].trigger('playlist:remove_from_queue', {:id => @song._id})
+        render :json => true 
+      }
       failure.json { render :json => false }
     }
   end
