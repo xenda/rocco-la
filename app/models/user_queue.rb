@@ -22,7 +22,9 @@ class UserQueue
   end
   
   def get_next_one
-    self.songs.where(position: current_song_instance.position + 1).first
+    index = self.songs.index(current_song_instance)
+    self.songs[index+1]
+    # self.songs.where(position: current_song_instance.position + 1).first
   end
   
   def rewind_to_first
