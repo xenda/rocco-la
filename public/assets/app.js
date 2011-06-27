@@ -442,4 +442,20 @@ $(function() {
     });
   });
 
+  $('.add_to_queue').live('click', function(event){
+    event.preventDefault();
+    var video = {video: {
+                  youtube_id: $(this).attr('id').replace('video_', ''),
+                  title: $(this).text()}
+                }
+    $.ajax({
+      url: '/add_to_queue',
+      data: video,
+      type: 'POST',
+      success: function(data){
+        console.log(data);
+      }
+    });
+  });
+
 });

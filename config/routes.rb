@@ -1,5 +1,8 @@
 RoccoLa::Application.routes.draw do
   devise_for :users
+
+  match '/add_to_queue' => 'home#add_to_queue'
+
   root :to => "home#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
