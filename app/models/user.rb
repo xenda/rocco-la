@@ -5,6 +5,6 @@ class User
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :user_queues
+  has_one :user_queue
 
 end

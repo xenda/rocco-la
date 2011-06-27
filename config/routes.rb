@@ -5,6 +5,8 @@ RoccoLa::Application.routes.draw do
       get 'current'
     end
   end
+  match '/add_to_queue' => 'home#add_to_queue'
+
   root :to => "home#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
