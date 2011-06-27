@@ -37,7 +37,7 @@ class UserQueue
     self.songs.size > 1
   end
   
-  def current_last_song
+  def current_last_song?
     current_song_instance == self.songs.last
   end
   
