@@ -10,7 +10,10 @@ class HomeController < ApplicationController
 
   def add_to_queue
     queue = UserQueue.last
-    queue.songs << Song.create(params[:video])
+    song = Song.create(params[:video])
+    song.position = queue.songs ? queue.songs.size + 1 : 1
+    song.save
+    queue.songs << song
     queue.reload
     render :json => queue.songs.last
   end
