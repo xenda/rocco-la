@@ -25,5 +25,12 @@ class SongsController < InheritedResources::Base
     video_id = user_queue.current_song
     render :json => {:video_id => video_id, :play_to => play_to, :title => ""}
   end
+
+  def destroy
+    destroy!{|success,failure|
+      success.json { render :json => true }
+      failure.json { render :json => false }
+    }
+  end
   
 end
