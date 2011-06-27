@@ -36,8 +36,11 @@ function playerStatus(state){
 function videoStatusUpdate(state) {
    yt_status("Estado: " + playerStatus(state));
    if (state == FINISHED){
-     $('#queue li:last').remove();
      loadNextVideo();
+     if ($("#queue li").size > 1){
+        $('#queue li:last').remove();
+     } 
+
    }
    
 }
@@ -51,12 +54,23 @@ function updateTimes(current,total){
   current_minutes = Math.floor(current_seconds/60);  
   current_seconds = Math.round(current_seconds % 60);
 
+  if (current_seconds < 10)
+    { current_zero_seconds = "0"}
+  else
+    { current_zero_seconds = ""}
+
+
   total_seconds = total;                            
   total_minutes = Math.floor(total_seconds/60);  
   total_seconds = Math.round(total_seconds % 60);
+
+  if (total_seconds < 10)
+    { total_zero_seconds = "0"}
+  else
+    { total_zero_seconds = ""}
   
-  $("#status #current").html(current_minutes + ":" + current_seconds);
-  $("#status #total_duration").html(total_minutes + ":" + total_seconds);  
+  $("#status #current").html(current_minutes + ":" + current_zero_seconds + current_seconds);
+  $("#status #total_duration").html(total_minutes + ":" + total_zero_seconds + total_seconds);  
   
 }
 
