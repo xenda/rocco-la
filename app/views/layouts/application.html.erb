@@ -3,12 +3,19 @@
 <head>
   <title>RoccoLa</title>
   <%= include_stylesheets :app %>
-  <%= include_javascripts :app %>
   <%= csrf_meta_tag %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div id="header">
+    <h1 id="rocco.la">Rocco.La</h1>
+    <h2>A poor-man's Turntable.fm</h2>
+  </div>
+  <div id="wrapper">
+    <%= yield %>
+  </div>
+  <div id="footer">
+    
+  </div>
+<%= include_javascripts :app %>
 </body>
 </html>
