@@ -16,13 +16,13 @@ class UserQueue
         next_song = get_next_one
       end
       set_current_song(next_song,time)
-      current_song.destroy
+      current_song_instance.destroy
       self.reload
     end
   end
   
   def get_next_one
-    self.songs.where(position: current_song.position + 1).first
+    self.songs.where(position: current_song_instance.position + 1).first
   end
   
   def rewind_to_first
@@ -38,7 +38,7 @@ class UserQueue
   end
   
   def current_last_song
-    current_song == self.songs.last
+    current_song_instance == self.songs.last
   end
   
   def set_current_song(song,time=nil)
@@ -47,7 +47,7 @@ class UserQueue
     self.save
   end
   
-  def current_song
+  def current_song_instance
     @current_song ||= self.songs.where(youtube_id: self.current_song).first
   end
   

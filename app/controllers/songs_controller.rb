@@ -9,6 +9,7 @@ class SongsController < InheritedResources::Base
       unless user_queue.current_song 
         user_queue.load_next_song(current_time)
       end
+    logger.info "4"
       play_to = current_time - user_queue.started_at
       video_id = user_queue.current_song
       render :json => {:video_id => video_id, :play_to => play_to, :title => ""}
