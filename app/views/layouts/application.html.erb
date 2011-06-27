@@ -10,6 +10,7 @@
     <h1 id="rocco.la">Rocco.La</h1>
     <h2>A poor-man's Turntable.fm</h2>
   </div>
+  <div id="status" class="wrapper"></div>
   <div id="main" class="wrapper">
     <%= yield %>
   </div>
@@ -19,6 +20,7 @@
       <a href="http://twitter.com/yaraher">Yaraher</a>
     </p>
   </div>
+<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js" %>
 <%= include_javascripts :app %>
 </body>
 </html>
