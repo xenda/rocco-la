@@ -20,8 +20,9 @@ class SongsController < InheritedResources::Base
   def next
     user_queue = UserQueue.last
     current_time = Time.now
-    user_queue.load_next_song(current_time)
+    user_queue.load_next_song(current_time)    
     play_to = 0
+    logger.info user_queue.songs.inspect
     video_id = user_queue.current_song
     logger.info play_to
     logger.info video_id

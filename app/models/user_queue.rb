@@ -14,8 +14,9 @@ class UserQueue
     elsif self.songs.size > 1
       current = Song.where(youtube_id: self.current_song).first
       puts current.inspect
+      puts self.songs.inspect
       index = self.songs.index(current)
-      index = 0 if index == (self.songs.size - 1)
+      index = -1  if index == (self.songs.size - 1)
       puts index
       next_song = songs[index+1]
       puts next_song.inspect
