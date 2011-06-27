@@ -28,5 +28,12 @@ class SongsController < InheritedResources::Base
     logger.info video_id
     render :json => {:video_id => video_id, :play_to => play_to, :title => ""}
   end
+
+  def destroy
+    destroy!{|success,failure|
+      success.json { render :json => true }
+      failure.json { render :json => false }
+    }
+  end
   
 end

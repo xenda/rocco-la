@@ -7,8 +7,10 @@
   %h2 Current playlist
   %ul#queue
     - @songs.each do |song|
-      %li
+      %li{:id => "song_#{song.id}"}
         = song.title
+        %small
+          %a.remove_from_playlist{:href => '#', :id => song.id} Remove
 
   %h2 Add a new 
   %form#video_search

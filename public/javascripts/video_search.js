@@ -33,7 +33,22 @@ $(function() {
       success: function(data){
         if(data){
           console.log(data);
-          $('#queue').prepend('<li>'+data.title+'</li>');
+          $('#queue').prepend('<li id="song_'+data._id+'">'+data.title+'<small><a class="remove_from_playlist" href="#" id="'+data._id+'">Remove</a></small></li>');
+        }
+      }
+    });
+  });
+
+  $('.remove_from_playlist').live('click', function(event){
+    event.preventDefault();
+    var id = $(this).attr('id');
+    $.ajax({
+      url: '/songs/'+id+'.json',
+      type: 'DELETE',
+      success: function(data){
+        if(data){
+          console.log('song_'+id);
+          $('#song_'+id).remove();
         }
       }
     });
