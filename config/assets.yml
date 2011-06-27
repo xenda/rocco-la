@@ -1,6 +1,9 @@
 javascripts:
   app:
-    - public/javascripts/*.js
+    - public/javascripts/jquery.min.js
+    - public/javascripts/jquery_ujs.js    
+    - public/javascripts/application.js   
+    - public/javascripts/video_search.js         
 stylesheets:
   app:
     - public/stylesheets/*.css

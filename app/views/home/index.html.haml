@@ -1,6 +1,10 @@
-%h2 Hi
-%form#video_search
-  %p
-    %input{:type => "text", :name => "query", :id => "query"}
-    %input{:type => "submit", :value => "Buscar"}
-%ul#results
+#content_column
+  #vidplayer
+    You need Flash player 8+ and JavaScript enabled to view this video.
+
+#sidebar
+  %form#video_search
+    %p
+      %input{:type => "text", :name => "query", :id => "query"}
+      %input{:type => "submit", :value => "Buscar"}
+  %ul#results

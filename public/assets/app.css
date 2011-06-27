@@ -8,9 +8,9 @@ body {
 
 div#main.wrapper {
 	padding: 10px;
-	-webkit-border-radius: 10px;
+	/*-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
-	border-radius: 10px;
+	border-radius: 10px;*/
 	background-color: white;
 }
 
@@ -23,6 +23,25 @@ div#main.wrapper {
 	color: #df7246;
 	text-decoration: none;
 }
+
+div#status {
+	padding: 10px;
+	background-color: #f2daa4;
+	color: #fff;
+	overflow: hidden;
+	font-size: 38px;
+	height: 20px;
+	text-align: right;
+}
+
+#vidplayer {
+	padding: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background-color: #bfac81;
+}
+
 #header h1 {
 	background-image: url(../images/logo.png?1309135778);
 	height: 90px;
