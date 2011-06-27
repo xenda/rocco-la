@@ -44,21 +44,28 @@ function yt_status(message){
 function updateTimes(current,total){
   current_seconds = current;         
   current_minutes = Math.floor(current_seconds/60);  
-  current_seconds = current_seconds % 60;
+  current_seconds = Math.round(current_seconds % 60);
 
   total_seconds = total;                            
   total_minutes = Math.floor(total_seconds/60);  
-  total_seconds = total_seconds % 60;
+  total_seconds = Math.round(total_seconds % 60);
   
   $("#status #current").html(current_minutes + ":" + current_seconds);
   $("#status #total_duration").html(total_minutes + ":" + total_seconds);  
   
 }
 
+function update_status(){
+  ytplayer = document.getElementById("vidplayer");
+  updateTimes(ytplayer.getCurrentTime(),ytplayer.getDuration())
+  setTimeout(update_status,1000);  
+}
+
 function onYouTubePlayerReady(playerId) {
   ytplayer = document.getElementById(playerId);
   ytplayer.addEventListener('onStateChange', 'videoStatusUpdate');
   loadCurrentVideo();
+  setTimeout(update_status,1000);
 }
 
 
