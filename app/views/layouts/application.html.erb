@@ -6,15 +6,18 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <div id="header">
+  <div id="header" class="wrapper">
     <h1 id="rocco.la">Rocco.La</h1>
     <h2>A poor-man's Turntable.fm</h2>
   </div>
-  <div id="wrapper">
+  <div id="main" class="wrapper">
     <%= yield %>
   </div>
-  <div id="footer">
-    
+  <div id="footer" class="wrapper">
+    <p> 
+      A simple, useless project by <a href="http://twitter.com/hpneo">HPNeo</a> and 
+      <a href="http://twitter.com/yaraher">Yaraher</a>
+    </p>
   </div>
 <%= include_javascripts :app %>
 </body>
