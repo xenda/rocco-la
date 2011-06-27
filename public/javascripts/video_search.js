@@ -1,6 +1,26 @@
 var search_list = [];
 
 $(function() {
+  
+  // Enable pusher logging - don't include this in production
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) window.console.log(message);
+    };
+
+    // Flash fallback logging - don't include this in production
+    WEB_SOCKET_DEBUG = true;
+
+    var pusher = new Pusher('d80ab8b828a435a50beb');
+    var channel = pusher.subscribe('global_room');
+    channel.bind('playlist:add_to_queue', function(data) {
+      // alert(data);
+      
+      
+          $('#queue').prepend('<li id="song_'+data["_id"]+'">'+data['title']+'<small><a class="remove_from_playlist" href="#" id="'+data["_id"]+'">Remove</a></small></li>');      
+      
+    });
+    
+    
 
   $('#video_search').submit(function(event){
     event.preventDefault();
@@ -34,7 +54,7 @@ $(function() {
       success: function(data){
         if(data){
           console.log(data);
-          $('#queue').prepend('<li id="song_'+data._id+'">'+data.title+'<small><a class="remove_from_playlist" href="#" id="'+data._id+'">Remove</a></small></li>');
+          // $('#queue').prepend('<li id="song_'+data._id+'">'+data.title+'<small><a class="remove_from_playlist" href="#" id="'+data._id+'">Remove</a></small></li>');
         }
       }
     });

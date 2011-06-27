@@ -39,3 +39,4 @@ gem "bson_ext"
 gem "mongoid", ">= 2.0.0.beta.19"
 gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
 gem 'inherited_resources'
+gem 'pusher'

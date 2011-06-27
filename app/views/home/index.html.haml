@@ -5,6 +5,7 @@
 #sidebar
 
   %h2 Current playlist
+  .spinner= image_tag "spinner.gif"
   %ul#queue
     - @songs.each do |song|
       %li{:id => "song_#{song.id}"}

@@ -77,10 +77,21 @@ function onYouTubePlayerReady(playerId) {
 
 $(function() {
 
+  setupSpinners();
   setupVideo();
  
 });
 
+
+function setupSpinners(){
+  
+  $(".spinner").bind("ajaxSend", function(){
+    $(this).show();
+  }).bind("ajaxComplete", function(){
+    $(this).hide();
+  });
+  
+}
 
 function loadVideo(videoId,startSeconds){
   if (ytplayer) {

@@ -21,10 +21,40 @@ div#sidebar {
 }
 
 #sidebar h2 {
-	font-size: 14px;
+	font-size: 34px;
 	color: #a75d34;
+	margin: 0px;
+	font-family: 'Sue Ellen Francisco', arial, serif;
+	height: 50px;
 }
 
+ul#queue {
+	padding: 0;	
+	margin: 0px;
+	margin-top: 10px;
+}
+ul#queue li {
+	padding: 8px 9px;
+	background-color: #f6f4e1;
+	font: 14px Georgia, "Times New Roman", Times, serif;
+	color: #a75d34;
+	border-bottom: 1px solid #dad9c8;
+}
+
+ul#queue li:hover {
+	background-color: #e4e2d0;
+}
+
+.spinner {
+	width: 40px;
+	margin: 20px auto;
+	margin-bottom: 0px;
+}
+
+ul#queue li a {
+	margin-left: 10px;
+	color: #baa2ab;
+}
 ul#results {
 	padding: 0;
 	height: 200px;
@@ -33,8 +63,10 @@ ul#results {
 
 }
 ul#results li {
-	margin-bottom: 10px;
+	padding-bottom: 5px;
+	padding-top: 5px;
 	overflow: auto;
+	border-bottom: 1px solid #e7e7e7;
 }
 
 ul#results li img {
