@@ -1,3 +1,5 @@
+var search_list = [];
+
 $(function() {
 
   $('#video_search').submit(function(event){
@@ -10,16 +12,19 @@ $(function() {
         var title = item.title.$t;
         var id = item.id.$t.replace('http://gdata.youtube.com/feeds/videos/', '');
         var thumbnail = item.media$group.media$thumbnail[3].url;
-        $('#results').append('<li><a href="#add_to_queue" class="add_to_queue" id="video_'+id+'"><img src="'+thumbnail+'" />'+title+'</a></li>');
+        var duration = item.media$group.yt$duration.seconds;
+        $('#results').append('<li><a href="#add_to_queue" class="add_to_queue" id="video_'+id+'"><img src="'+thumbnail+'" />'+title+'</a><small id="duration_'+id+'" style="display:none;">'+duration+'</small></li>');
       });
     });
   });
 
   $('.add_to_queue').live('click', function(event){
     event.preventDefault();
+    var id = $(this).attr('id').replace('video_', '');
     var video = {video: {
-                  youtube_id: $(this).attr('id').replace('video_', ''),
-                  title: $(this).text()}
+                  youtube_id: id,
+                  title: $(this).text(),
+                  duration: $('#duration_'+id).text()}
                 }
     $.ajax({
       url: '/add_to_queue',
@@ -27,6 +32,7 @@ $(function() {
       type: 'POST',
       success: function(data){
         if(data){
+          console.log(data);
           $('#queue').prepend('<li>'+data.title+'</li>');
         }
       }
