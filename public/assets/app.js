@@ -391,6 +391,7 @@ function playerStatus(state){
 function videoStatusUpdate(state) {
    yt_status("Estado: " + playerStatus(state));
    if (state == FINISHED){
+     $('#queue li:last').remove();
      loadNextVideo();
    }
    
