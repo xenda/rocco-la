@@ -22,10 +22,7 @@ class SongsController < InheritedResources::Base
     current_time = Time.now
     user_queue.load_next_song(current_time)    
     play_to = 0
-    logger.info user_queue.songs.inspect
     video_id = user_queue.current_song
-    logger.info play_to
-    logger.info video_id
     render :json => {:video_id => video_id, :play_to => play_to, :title => ""}
   end
   

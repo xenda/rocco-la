@@ -4,6 +4,7 @@ class Song
   field :youtube_id, :type => String
   field :title, :type => String
   field :duration, :type => Integer
+  field :position, :type => Integer  
   belongs_to :user_queue
 
 end
