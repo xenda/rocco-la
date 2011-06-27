@@ -38,18 +38,27 @@ function videoStatusUpdate(state) {
 }
 
 function yt_status(message){
-  $("#status").html(message);
+  $("#status #message").html(message);
 }
-// 
-// function onYouTubePlayerReady(playerId) {
-//   player = document.getElementById(playerId);
-//   player.addEventListener("onStateChange", "videoStatusUpdate");
-// }
+
+function updateTimes(current,total){
+  current_seconds = current;         
+  current_minutes = Math.floor(current_seconds/60);  
+  current_seconds = current_seconds % 60;
+
+  total_seconds = total;                            
+  total_minutes = Math.floor(total_seconds/60);  
+  total_seconds = total_seconds % 60;
+  
+  $("#status #current").html(current_minutes + ":" + current_seconds);
+  $("#status #total_duration").html(total_minutes + ":" + total_seconds);  
+  
+}
 
 function onYouTubePlayerReady(playerId) {
-ytplayer = document.getElementById(playerId);
-ytplayer.addEventListener('onStateChange', 'videoStatusUpdate');
-loadVideo("57tK6aQS_H0",0);
+  ytplayer = document.getElementById(playerId);
+  ytplayer.addEventListener('onStateChange', 'videoStatusUpdate');
+  loadCurrentVideo();
 }
 
 
@@ -64,8 +73,17 @@ $(function() {
 function loadVideo(videoId,startSeconds){
   if (ytplayer) {
     ytplayer.loadVideoById(videoId, parseInt(startSeconds));
-    ytplayer.playVideo();
+    updateTimes(ytplayer.getCurrentTime(),ytplayer.getDuration())
+    // ytplayer.playVideo();
+    
   }
+}
+
+function loadCurrentVideo(){
+  
+  $.getJSON('/songs/current.json', function(data){
+    loadVideo(data['video_id'],data['play_to']);
+  });
 }
 
 

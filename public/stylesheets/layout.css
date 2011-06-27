@@ -27,12 +27,26 @@ div#main.wrapper {
 div#status {
 	padding: 10px;
 	background-color: #f2daa4;
-	color: #fff;
 	overflow: hidden;
-	font-size: 38px;
 	height: 20px;
 	text-align: right;
 }
+
+div#status span {
+	color: #fff;
+	font-size: 35px;
+	margin-right: 10px;
+}
+
+div#status span#current {
+	margin: 0px;
+	color: #fef395;
+}
+
+div#status span#total_duration {
+	color: #a05a33;
+}
+
 
 #vidplayer {
 	padding: 10px;

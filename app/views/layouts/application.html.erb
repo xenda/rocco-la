@@ -10,7 +10,12 @@
     <h1 id="rocco.la">Rocco.La</h1>
     <h2>A poor-man's Turntable.fm</h2>
   </div>
-  <div id="status" class="wrapper"></div>
+  <div id="status" class="wrapper">
+    <span id="message"></span>
+    <span id="current"></span>
+    <span>/</span>
+    <span id="total_duration"></span>
+  </div>
   <div id="main" class="wrapper">
     <%= yield %>
   </div>
