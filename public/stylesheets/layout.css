@@ -119,6 +119,7 @@ div#status span#total_duration {
 div#content_column {
 	float: left;
 	margin-right: 10px;
+	overflow: auto;
 }
 
 
@@ -128,6 +129,7 @@ div#content_column {
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 	background-color: #bfac81;
+	width: 600px;
 }
 
 #header h1 {
