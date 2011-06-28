@@ -122,6 +122,29 @@ $(function() {
   setupSpinners();
   setupVideo();
  
+ 
+  $("a#down").click(function(){
+    
+    if (player){
+      if (player.getVolume() >= 0){
+        player.setVolume(player.getVolume() - 10);
+      }
+    }
+    return false;
+    
+  });
+  
+  $("a#up").click(function(){
+
+    if (player){
+      if (player.getVolume() <= 100){
+        player.setVolume(player.getVolume() + 10);
+      }
+    }
+    return false;
+    
+  });
+ 
 });
 
 

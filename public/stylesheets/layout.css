@@ -119,7 +119,8 @@ div#status span#total_duration {
 div#content_column {
 	float: left;
 	margin-right: 10px;
-	overflow: auto;
+	overflow: hidden;
+	padding-bottom: 10px;
 }
 
 
@@ -130,6 +131,25 @@ div#content_column {
 	border-radius: 10px;
 	background-color: #bfac81;
 	width: 600px;
+}
+#content_column div.controls {
+	margin-top: 10px;
+	margin-bottom: 3px;
+	overflow: auto;
+	
+}
+#content_column div.controls a {
+	color: #fafef8;
+	font-size: 12px;
+	text-decoration: none;
+	margin-right: 8px;
+	padding: 8px 10px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	background-color: #a84237;
+	float: left;
+	text-transform: lowercase;
 }
 
 #header h1 {
