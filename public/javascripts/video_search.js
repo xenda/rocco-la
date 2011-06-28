@@ -19,9 +19,15 @@ $(function() {
     
     
     channel.bind('playlist:remove_from_queue', function(data) {
-      console.log('song_'+data["id"]);
       $('#song_'+data["id"]).remove();
     });    
+    
+    channel.bind('playlist:play_next', function(data) {
+      // console.log('song_'+data["id"]);
+      loadVideo(data['video_id'],data['play_to']);
+    });
+    
+
     
     
     
@@ -33,7 +39,7 @@ $(function() {
     $.getJSON('http://gdata.youtube.com/feeds/videos?alt=json-in-script&max-results=10&format=5&q='+query+'&category=Music&callback=?', function(data){
       $('#results').html('');
       $(data.feed.entry).each(function(index, item){
-        console.log(data);
+        // console.log(data);
         var title = item.title.$t;
         var id = item.id.$t.replace('http://gdata.youtube.com/feeds/videos/', '');
         var thumbnail = item.media$group.media$thumbnail[3].url;
@@ -57,7 +63,7 @@ $(function() {
       type: 'POST',
       success: function(data){
         if(data){
-          console.log(data);
+          // console.log(data);
           // $('#queue').prepend('<li id="song_'+data._id+'">'+data.title+'<small><a class="remove_from_playlist" href="#" id="'+data._id+'">Remove</a></small></li>');
         }
       }
@@ -72,7 +78,7 @@ $(function() {
       type: 'DELETE',
       success: function(data){
         if(data){
-          console.log('song_'+id);
+          // console.log('song_'+id);
           $('#song_'+id).remove();
         }
       }

@@ -24,6 +24,7 @@ class SongsController < InheritedResources::Base
     user_queue.load_next_song(current_time)    
     play_to = 0
     video_id = user_queue.current_song
+    Pusher['global_room'].trigger('playlist:play_next', {:video_id => video_id, :play_to => play_to })
     render :json => {:video_id => video_id, :play_to => play_to, :title => ""}
   end
 

@@ -195,7 +195,6 @@ function loadCurrentVideo(){
 function loadNextVideo(){
   
   $.getJSON('/songs/next.json', function(data){
-    loadVideo(data['video_id'],data['play_to']);
     if ($("#queue li").size > 1){
        $('#queue li:last').remove();
     } 
