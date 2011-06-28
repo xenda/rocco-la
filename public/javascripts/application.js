@@ -1,12 +1,16 @@
 ytplayer = ""
 function onytplayerStateChange(newState) {document.getElementById('status').innerHTML = newState;}
 
-var INITIALIZED = -1 
-var FINISHED    = 0 
-var PLAYING     = 1 
-var STOPPED     = 2 
-var BUFFERING   = 3 
-var ON_QUEUE    = 5 
+var INITIALIZED  = -1 
+var FINISHED     = 0 
+var PLAYING      = 1 
+var STOPPED      = 2 
+var BUFFERING    = 3 
+var ON_QUEUE     = 5 
+var INVALID      =  2
+var NOT_FOUND    = 100
+var NOT_ALLOWED  = 101
+var NOT_ALLOWED2 = 150
 
 function playerStatus(state){
   switch(state)
@@ -33,6 +37,26 @@ function playerStatus(state){
   
 }
 
+function errorStatus(state){
+  
+  switch(state)
+  {
+    case INVALID:
+      return "ID de Video inválido"
+      break;
+    case NOT_FOUND:
+      return "No se encontró el video"
+      break;
+    case NOT_ALLOWED:
+      return "No se permite reproducir el video"
+      break;
+    case NOT_ALLOWED2:
+      return "No se permite reproducir el video"
+      break;
+  }
+  
+}
+
 function videoStatusUpdate(state) {
    yt_status("Estado: " + playerStatus(state));
    if (state == FINISHED){
@@ -41,9 +65,13 @@ function videoStatusUpdate(state) {
    
    
 }
+function onPlayerError(event){
+  yt_status("Error: " + errorStatus(event.data));
+}
+
 function onPlayerStateChange(event){
      yt_status("Estado: " + playerStatus(event.data));
-     if (event.data == FINISHED){
+     if (event.data == YT.PlayerState.ENDED){
        loadNextVideo();
        if ($("#queue li").size > 1){
           $('#queue li:last').remove();
@@ -225,6 +253,7 @@ function setupIframe(){
 }
 
 var player;
+var done = false;
 function onYouTubePlayerAPIReady() {
   player = new YT.Player('vidplayer', {
     height: '356',
@@ -234,7 +263,8 @@ function onYouTubePlayerAPIReady() {
     playerVars: {controls : 0, disablekb: 1,enablejsapi:1, iv_load_policy:3,modestbranding:1,rel:0, showinfo:0},
     events: {
       'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
+      'onStateChange': onPlayerStateChange,
+      'onError': onPlayerError
     }
   });
   loadCurrentVideo();
