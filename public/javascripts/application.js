@@ -37,10 +37,6 @@ function videoStatusUpdate(state) {
    yt_status("Estado: " + playerStatus(state));
    if (state == FINISHED){
      loadNextVideo();
-     if ($("#queue li").size > 1){
-        $('#queue li:last').remove();
-     } 
-
    }
    
    
@@ -91,11 +87,19 @@ function updateTimes(current,total){
   
 }
 
+function checkFinished(current,total){
+  
+  if (current == total){
+    loadNextVideo();
+  }
+}
+
 function update_status(){
   if (Modernizr.postmessage)
   {
     if (player)
       updateTimes(player.getCurrentTime(),player.getDuration())
+      checkFinished(player.getCurrentTime(),player.getDuration())
   }
   else
   {  ytplayer = document.getElementById("vidplayer");
@@ -192,6 +196,9 @@ function loadNextVideo(){
   
   $.getJSON('/songs/next.json', function(data){
     loadVideo(data['video_id'],data['play_to']);
+    if ($("#queue li").size > 1){
+       $('#queue li:last').remove();
+    } 
   });
 }
 
