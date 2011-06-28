@@ -99,7 +99,7 @@ function update_status(){
   {
     if (player)
       updateTimes(player.getCurrentTime(),player.getDuration())
-      checkFinished(player.getCurrentTime(),player.getDuration())
+      // checkFinished(player.getCurrentTime(),player.getDuration())
   }
   else
   {  ytplayer = document.getElementById("vidplayer");
