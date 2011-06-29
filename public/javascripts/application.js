@@ -195,6 +195,15 @@ function setupSpinners(){
   
 }
 
+function removeLastVideo(videoId){
+  
+  if ($("#queue li").size() > 1){
+     $('#queue li#song_'+videoId).remove();
+  }
+  
+  
+}
+
 function removeLastItem(){
   
   if ($("#queue li").size() > 1){
@@ -204,12 +213,13 @@ function removeLastItem(){
   
 }
 
+
 function loadVideo(videoId,startSeconds){
   if (Modernizr.postmessage){
     if (player){
       player.loadVideoById(videoId, parseInt(startSeconds));
-      removeLastItem();
-      markLastAsActive();
+      // removeLastItem(videoId);
+      markLastAsActive(videoId);
       updateTimes(player.getCurrentTime(),player.getDuration())      
     }
     
@@ -219,7 +229,7 @@ function loadVideo(videoId,startSeconds){
   {
     if (ytplayer) {
       ytplayer.loadVideoById(videoId, parseInt(startSeconds));
-      markLastAsActive();
+      markLastAsActive(videoId);
       updateTimes(ytplayer.getCurrentTime(),ytplayer.getDuration())
     }
   }
@@ -235,7 +245,7 @@ function loadCurrentVideo(){
   $.getJSON('/songs/current.json', function(data){
     loadVideo(data['video_id'],data['play_to']);
     updateTitle(data['title']);
-    markLastAsActive();
+    markLastAsActive(data['video_id']);
   });
 }
 
@@ -248,13 +258,14 @@ function updateTitle(title){
 function loadNextVideo(){
   
   $.getJSON('/songs/next.json', function(data){
-    markLastAsActive();
+    removeLastItem()
+    markLastAsActive(data['video_id']);
   });
 }
 
-function markLastAsActive(){
-  $("#queue li:last").addClass("current_video");
-  $("#queue li:last a").remove();
+function markLastAsActive(videoId){
+  $("#queue li#song_"+videoId).addClass("current_video");
+  $("#queue li#song_" +videoId +" a").remove();
 }
 
 function setupVideo(){
