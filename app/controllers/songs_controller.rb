@@ -24,14 +24,14 @@ class SongsController < InheritedResources::Base
     user_queue.load_next_song(current_time)    
     play_to = 0
     video_id = user_queue.current_song
-    Pusher['global_room'].trigger('playlist:play_next', {:video_id => video_id, :play_to => play_to, :title => user_queue.current_title })
+    Pusher["#{Rails.env}_global_room"].trigger('playlist:play_next', {:video_id => video_id, :play_to => play_to, :title => user_queue.current_title })
     render :json => {:video_id => video_id, :play_to => play_to, :title => user_queue.current_title}
   end
 
   def destroy
     destroy!{|success,failure|
       success.json { 
-        Pusher['global_room'].trigger('playlist:remove_from_queue', {:id => @song._id})
+        Pusher["#{Rails.env}_global_room"].trigger('playlist:remove_from_queue', {:id => @song._id})
         render :json => true 
       }
       failure.json { render :json => false }
