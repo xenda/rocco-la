@@ -21,17 +21,18 @@ div#sidebar {
 }
 
 #sidebar h2 {
-	font-size: 34px;
+	/*font-size: 34px;*/
 	color: #a75d34;
 	margin: 0px;
-	font-family: 'Sue Ellen Francisco', arial, serif;
-	height: 50px;
+	font: 20px 'Podkova', sans-serif;
+	margin-top: 10px;
 }
 
 ul#queue {
 	padding: 0;	
 	margin: 0px;
 	margin-top: 10px;
+	margin-bottom: 40px;
 }
 ul#queue li {
 	padding: 8px 9px;
@@ -44,6 +45,8 @@ ul#queue li {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+   	font: normal 16px 'Nixie One', cursive;
+
 }
 
 ul#queue li:hover {
@@ -68,7 +71,7 @@ ul#queue li a:hover{
 ul#results {
 	padding: 0;
 	height: 200px;
-	overflow: scroll;
+	overflow: auto;
 	margin: 0px;
 
 }
@@ -91,6 +94,8 @@ ul#results li a {
 	text-decoration: none;
 	font: 12px Georgia, "Times New Roman", Times, serif;
 	text-transform: capitalize;
+	font: normal 16px 'Nixie One', cursive;
+
 }
 
 #footer p {
@@ -113,8 +118,10 @@ div#status {
 
 div#status span {
 	color: #fff;
-	font-size: 35px;
+	font-size: 40px;
 	margin-right: 10px;
+	font-family: 'Podkova', sans-serif;
+
 }
 
 div#status span#current {
@@ -201,7 +208,6 @@ div#song_title {
 	margin-top: 10px;
 	color: #837721;
 	text-align: center;
-	font-size: 15px;
 	letter-spacing: -1px;
 	word-spacing: 5px;
 	padding-bottom: 10px;
@@ -210,17 +216,18 @@ div#song_title {
 
 	background-color: #f0f1e3;
 	padding-top: 10px;
+	font: normal 20px 'Nixie One', cursive;
 }
 ul#queue li.current_video a {
 	color: #bf693b;
 }
 
-ul#queue li.current_video:before {
-	/*content:  "\2713";*/
+/*ul#queue li.current_video:before {
+	content:  "\2713";
 	content: "\2192";
 	margin-right: 5px;
 	color: #fffeff;
 	background-color: #ff9b82;
 	padding: 3px 5px;
 	font-size: 1em;
-}
+}*/
