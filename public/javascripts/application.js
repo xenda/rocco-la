@@ -1,3 +1,6 @@
+var queue_scrollpane_element;
+var queue_scrollpane_api;
+
 ytplayer = ""
 function onytplayerStateChange(newState) {document.getElementById('status').innerHTML = newState;}
 
@@ -157,7 +160,8 @@ $(function() {
   setupSpinners();
   setupVideo();
 
-  $('#queue').jScrollPane();
+  queue_scrollpane_element = $('#queue').jScrollPane();
+  queue_scrollpane_api = queue_scrollpane_element.data('jsp');
  
  
   $("a#down").click(function(){
