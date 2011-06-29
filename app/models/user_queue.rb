@@ -13,12 +13,21 @@ class UserQueue
       if current_last_song?
         next_song = rewind_to_first
       else
-        next_song = get_next_one
+        if already_playing?
+          next_song = current_song_instance
+          time = Time.now - self.started_at
+        else
+          next_song = get_next_one
+        end
       end
       set_current_song(next_song,time)
       current_song_instance.destroy
       self.reload
     end
+  end
+  
+  def already_playing?
+    started_at + current_song_instance.duration > Time.now
   end
   
   def get_next_one
