@@ -111,13 +111,18 @@ function updateTimes(current,total){
   
 }
 
-function checkFinished(current,total){
+function checkFinished(){
+  
+  
+  current = player.getCurrentTime()
+  total = player.getDuration()
   
   if (current > 5 && total > 5) {    
     if (current == total){
         loadNextVideo();
       }
   }
+  
 }
 
 function update_status(){
@@ -125,7 +130,7 @@ function update_status(){
   {
     if (player)
       updateTimes(player.getCurrentTime(),player.getDuration())
-      checkFinished(player.getCurrentTime(),player.getDuration())
+      checkFinished();
   }
   else
   {  ytplayer = document.getElementById("vidplayer");
