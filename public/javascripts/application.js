@@ -156,6 +156,8 @@ $(function() {
 
   setupSpinners();
   setupVideo();
+
+  $('#queue').jScrollPane();
  
  
   $("a#down").click(function(){

@@ -12,7 +12,7 @@
   .spinner= image_tag "spinner.gif"
   %ul#queue
     - @songs.each do |song|
-      %li{:id => "song_#{song.id}"}
+      %li{:id => "song_#{song.youtube_id}"}
         = song.title
         %small
           %a.remove_from_playlist{:href => '#', :id => song.id} Remove

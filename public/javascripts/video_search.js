@@ -11,10 +11,10 @@ $(function() {
     WEB_SOCKET_DEBUG = true;
 
     var pusher = new Pusher('d80ab8b828a435a50beb');
-    var channel = pusher.subscribe('global_room');
+    var channel = pusher.subscribe(room);
     
     channel.bind('playlist:add_to_queue', function(data) {
-      $('#queue').prepend('<li id="song_'+data["_id"]+'">'+data['title']+'<small><a class="remove_from_playlist" href="#" id="'+data["_id"]+'">Remove</a></small></li>');      
+      $('#queue').prepend('<li id="song_'+data["youtube_id"]+'">'+data['title']+'<small><a class="remove_from_playlist" href="#" id="'+data["_id"]+'">Remove</a></small></li>');      
     });
     
     
@@ -74,13 +74,14 @@ $(function() {
   $('.remove_from_playlist').live('click', function(event){
     event.preventDefault();
     var id = $(this).attr('id');
+    var song_id = $(this).parent().parent().attr('id');
     $.ajax({
       url: '/songs/'+id+'.json',
       type: 'DELETE',
       success: function(data){
         if(data){
           // console.log('song_'+id);
-          $('#song_'+id).remove();
+          $('#'+song_id).remove();
         }
       }
     });
