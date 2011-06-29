@@ -254,6 +254,7 @@ function loadNextVideo(){
 
 function markLastAsActive(){
   $("#queue li:last").addClass("current_video");
+  $("#queue li:last a").remove();
 }
 
 function setupVideo(){

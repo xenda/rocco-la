@@ -27,7 +27,7 @@ class UserQueue
   end
   
   def already_playing?
-    started_at + current_song_instance.duration > Time.now
+    (started_at + current_song_instance.duration) > Time.now
   end
   
   def get_next_one
