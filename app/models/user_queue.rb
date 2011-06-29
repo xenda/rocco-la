@@ -15,7 +15,7 @@ class UserQueue
       else
         if already_playing?
           next_song = current_song_instance
-          time = Time.now - self.started_at
+          return false
         else
           next_song = get_next_one
         end
@@ -27,7 +27,7 @@ class UserQueue
   end
   
   def already_playing?
-    (started_at + current_song_instance.duration) > Time.now
+    (started_at + current_song_instance.duration.seconds) > (Time.now + 10.seconds)
   end
   
   def get_next_one
@@ -64,6 +64,7 @@ class UserQueue
   
   def current_song_instance
     @current_song ||= self.songs.where(youtube_id: self.current_song).first
+    @current_song ||= self.songs.first
   end
   
 end
