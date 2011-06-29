@@ -22,7 +22,7 @@ function playerStatus(state){
       return "Finalizado"
       break;
     case PLAYING:
-      return "En ejecución"
+      return "Reproduciendo"
       break;
     case STOPPED:
       return "Detenido"
@@ -73,10 +73,6 @@ function onPlayerStateChange(event){
      yt_status("Estado: " + playerStatus(event.data));
      if (event.data == YT.PlayerState.ENDED){
        loadNextVideo();
-       if ($("#queue li").size > 1){
-          $('#queue li:last').remove();
-       } 
-
      }
      
      if (event.data == STOPPED){
@@ -117,8 +113,10 @@ function updateTimes(current,total){
 
 function checkFinished(current,total){
   
-  if (current == total){
-    loadNextVideo();
+  if (current > 5 && total > 5) {    
+    if (current == total){
+        loadNextVideo();
+      }
   }
 }
 
@@ -127,7 +125,7 @@ function update_status(){
   {
     if (player)
       updateTimes(player.getCurrentTime(),player.getDuration())
-      // checkFinished(player.getCurrentTime(),player.getDuration())
+      checkFinished(player.getCurrentTime(),player.getDuration())
   }
   else
   {  ytplayer = document.getElementById("vidplayer");
@@ -190,10 +188,21 @@ function setupSpinners(){
   
 }
 
+function removeLastItem(){
+  
+  if ($("#queue li").size() > 1){
+     $('#queue li:last').remove();
+  }
+  
+  
+}
+
 function loadVideo(videoId,startSeconds){
   if (Modernizr.postmessage){
     if (player){
       player.loadVideoById(videoId, parseInt(startSeconds));
+      removeLastItem();
+      markLastAsActive();
       updateTimes(player.getCurrentTime(),player.getDuration())      
     }
     
@@ -203,6 +212,7 @@ function loadVideo(videoId,startSeconds){
   {
     if (ytplayer) {
       ytplayer.loadVideoById(videoId, parseInt(startSeconds));
+      markLastAsActive();
       updateTimes(ytplayer.getCurrentTime(),ytplayer.getDuration())
     }
   }
@@ -217,18 +227,27 @@ function loadCurrentVideo(){
   
   $.getJSON('/songs/current.json', function(data){
     loadVideo(data['video_id'],data['play_to']);
+    updateTitle(data['title']);
+    markLastAsActive();
   });
+}
+
+function updateTitle(title){
+  
+  $("#song_title").html(title);
+  
 }
 
 function loadNextVideo(){
   
   $.getJSON('/songs/next.json', function(data){
-    if ($("#queue li").size > 1){
-       $('#queue li:last').remove();
-    } 
+    markLastAsActive();
   });
 }
 
+function markLastAsActive(){
+  $("#queue li:last").addClass("current_video");
+}
 
 function setupVideo(){
   

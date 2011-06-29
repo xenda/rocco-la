@@ -25,6 +25,7 @@ $(function() {
     channel.bind('playlist:play_next', function(data) {
       // console.log('song_'+data["id"]);
       loadVideo(data['video_id'],data['play_to']);
+      updateTitle(data['title']);
     });
     
 

@@ -38,7 +38,7 @@ ul#queue li {
 	background-color: #f6f4e1;
 	font: 14px Georgia, "Times New Roman", Times, serif;
 	color: #a75d34;
-	border-bottom: 1px solid #dad9c8;
+	border-bottom: 1px dashed #b8a57c;
 	list-style: none;
 }
 
@@ -54,7 +54,8 @@ ul#queue li:hover {
 
 ul#queue li a {
 	margin-left: 10px;
-	color: #baa2ab;
+	color: #e6814b;
+	float: right;
 }
 ul#results {
 	padding: 0;
@@ -67,7 +68,8 @@ ul#results li {
 	padding-bottom: 5px;
 	padding-top: 5px;
 	overflow: auto;
-	border-bottom: 1px solid #e7e7e7;
+	border-bottom: 1px dashed #b8a57c;
+	background-color: #f0f1e3;
 }
 
 ul#results li img {
@@ -172,4 +174,42 @@ div#content_column {
 div {
 	font: 16px Georgia, "Times New Roman", Times, serif;
 	color: #575757;
+}
+
+ul#queue li.current_video {
+	background-color: rgba(253,136,108,0.5);
+	color: #a75d34;
+	border-bottom-color: #ff9592;
+	border-bottom-style: dashed;
+}
+ul#queue li.current_video:hover {
+	background-color: #faae98;
+}
+
+div#song_title {
+	margin-top: 10px;
+	color: #837721;
+	text-align: center;
+	font-size: 15px;
+	letter-spacing: -1px;
+	word-spacing: 5px;
+	padding-bottom: 10px;
+	border-bottom: 1px dashed #b8a57c;
+	border-top: 1px dashed #b8a57c;
+
+	background-color: #f0f1e3;
+	padding-top: 10px;
+}
+ul#queue li.current_video a {
+	color: #bf693b;
+}
+
+ul#queue li.current_video:before {
+	/*content:  "\2713";*/
+	content: "\2192";
+	margin-right: 5px;
+	color: #fffeff;
+	background-color: #ff9b82;
+	padding: 3px 5px;
+	font-size: 1em;
 }

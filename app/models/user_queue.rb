@@ -27,6 +27,10 @@ class UserQueue
     # self.songs.where(position: current_song_instance.position + 1).first
   end
   
+  def current_title
+    current_song_instance.title
+  end
+  
   def rewind_to_first
     self.songs.first
   end
