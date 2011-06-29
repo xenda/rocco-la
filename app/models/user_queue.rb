@@ -6,28 +6,66 @@ class UserQueue
   belongs_to :user
   has_many :songs
   
-  def load_next_song(time=nil)
+  REWIND = 0
+  
+  def change_song(time=nil)
     if one_song_remaining?
       set_current_song(songs.last,time)
     elsif more_than_one_song?
       if current_last_song?
         next_song = rewind_to_first
       else
+        next_song = get_next_one
+      end
+    end
+    current_song_instance.destroy
+    set_current_song(next_song,time)
+    self.reload
+    send_to_pusher(REWIND)
+  end
+  
+  def load_next_song(time=nil)
+    seconds_to_go = 0
+    if one_song_remaining?
+       if already_playing?
+         seconds_to_go = seconds_to_now
+         set_current_song(songs.last)
+       else
+         set_current_song(songs.last,Time.now)            
+       end
+    elsif more_than_one_song?
+      if current_last_song?
+        next_song = rewind_to_first
+      else
         if already_playing?
           next_song = current_song_instance
+          seconds_to_go = seconds_to_now
           return false
         else
           next_song = get_next_one
         end
       end
-      set_current_song(next_song,time)
       current_song_instance.destroy
-      self.reload
+      set_current_song(next_song,time)
     end
+    send_to_pusher(seconds_to_go)
   end
   
+  def no_songs_remaining?
+    songs.empty?
+  end
+  
+  def seconds_to_now
+    Time.now - started_at
+  end
+  
+  def send_to_pusher(play_to=REWIND)
+    Pusher["#{Rails.env}_global_room"].trigger('playlist:play_next', {:video_id => current_song, :play_to => play_to, :title => current_title })    
+  end
+  
+  
   def already_playing?
-    (started_at + current_song_instance.duration.seconds) > (Time.now + 10.seconds)
+    (started_at + current_song_instance.duration.seconds) > (Time.now + 20.seconds)
   end
   
   def get_next_one
@@ -63,8 +101,10 @@ class UserQueue
   end
   
   def current_song_instance
+    self.reload
     current_song ||= self.songs.where(youtube_id: self.current_song).first
     current_song ||= self.songs.first
+    current_song
   end
   
 end

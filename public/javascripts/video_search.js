@@ -20,11 +20,10 @@ $(function() {
     
     
     channel.bind('playlist:remove_from_queue', function(data) {
-      $('#song_'+data["id"]).remove();
+      $('#song_'+data["youtube_id"]).remove();
     });    
     
     channel.bind('playlist:play_next', function(data) {
-      // console.log('song_'+data["id"]);
       loadVideo(data['video_id'],data['play_to']);
       updateTitle(data['title']);
     });
@@ -82,7 +81,7 @@ $(function() {
       success: function(data){
         if(data){
           // console.log('song_'+id);
-          $('#'+song_id).remove();
+          // $('#'+song_id).remove();
         }
       }
     });
