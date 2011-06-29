@@ -63,8 +63,8 @@ class UserQueue
   end
   
   def current_song_instance
-    @current_song ||= self.songs.where(youtube_id: self.current_song).first
-    @current_song ||= self.songs.first
+    current_song ||= self.songs.where(youtube_id: self.current_song).first
+    current_song ||= self.songs.first
   end
   
 end

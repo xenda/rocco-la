@@ -21,13 +21,6 @@ class SongsController < InheritedResources::Base
   def next
     user_queue = UserQueue.last
     current_time = Time.now
-    logger.info "Loading #{user_queue.current_song}"
-    logger.info "Loading #{user_queue.started_at}"
-    logger.info "Loading #{user_queue.current_song_instance.duration}"
-    logger.info "Loading #{user_queue.started_at + user_queue.current_song_instance.duration.seconds}"        
-    logger.info "#{Time.now + 10.seconds}"
-
-      
     new_one = user_queue.load_next_song(current_time)
     play_to = 0
     play_to = Time.now - user_queue.started_at unless new_one
