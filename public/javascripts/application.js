@@ -115,7 +115,7 @@ function checkFinished(){
   
   
   current = player.getCurrentTime()
-  player = player.getDuration()
+  total = player.getDuration()
   
   if (current > 5 && total > 5) {    
     if (current == total){
@@ -130,7 +130,7 @@ function update_status(){
   {
     if (player)
       updateTimes(player.getCurrentTime(),player.getDuration())
-      setTimeout(checkFinished,5000)
+      checkFinished();
   }
   else
   {  ytplayer = document.getElementById("vidplayer");
