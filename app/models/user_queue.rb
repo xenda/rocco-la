@@ -25,6 +25,7 @@ class UserQueue
   end
   
   def load_next_song(time=nil)
+    reload
     seconds_to_go = 0
     if one_song_remaining?
        if already_playing?
@@ -34,20 +35,17 @@ class UserQueue
          set_current_song(songs.last,Time.now)            
        end
     elsif more_than_one_song?
-      if current_last_song?
-        next_song = rewind_to_first
+      if already_playing?
+        next_song = current_song_instance
+        seconds_to_go = seconds_to_now
+        return false
       else
-        if already_playing?
-          next_song = current_song_instance
-          seconds_to_go = seconds_to_now
-          return false
-        else
-          next_song = get_next_one
-        end
+        current_song_instance.destroy        
+        next_song = get_next_one
       end
-      current_song_instance.destroy
       set_current_song(next_song,time)
     end
+    
     send_to_pusher(seconds_to_go)
   end
   
@@ -70,6 +68,7 @@ class UserQueue
   
   def get_next_one
     index = self.songs.index(current_song_instance)
+    index = -1 if index == self.songs.size + 1
     self.songs[index+1]
     # self.songs.where(position: current_song_instance.position + 1).first
   end

@@ -268,6 +268,7 @@ function loadNextVideo(){
 }
 
 function markLastAsActive(videoId){
+  $("#queue li").removeClass("current_video")
   $("#queue li#song_"+videoId).addClass("current_video");
   $("#queue li#song_" +videoId +" a").remove();
 }
