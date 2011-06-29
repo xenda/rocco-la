@@ -14,7 +14,8 @@ $(function() {
     var channel = pusher.subscribe(room);
     
     channel.bind('playlist:add_to_queue', function(data) {
-      $('#queue').prepend('<li id="song_'+data["youtube_id"]+'">'+data['title']+'<small><a class="remove_from_playlist" href="#" id="'+data["_id"]+'">Remove</a></small></li>');      
+      $('#queue').prepend('<li id="song_'+data["youtube_id"]+'">'+data['title']+'<small><a class="remove_from_playlist" href="#" id="'+data["_id"]+'">Remove</a></small></li>');
+      queue_scrollpane_api.reinitialise();
     });
     
     
