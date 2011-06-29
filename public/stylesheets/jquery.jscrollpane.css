@@ -21,7 +21,7 @@
 	position: absolute;
 	top: 0;
 	right: 0;
-	width: 16px;
+	width: 10px;
 	height: 100%;
 	background: red;
 }
@@ -55,13 +55,13 @@
 
 .jspTrack
 {
-	background: #dde;
+	background: #e5e7cf;
 	position: relative;
 }
 
 .jspDrag
 {
-	background: #bbd;
+	background: #F2DAA4;
 	position: relative;
 	top: 0;
 	left: 0;
