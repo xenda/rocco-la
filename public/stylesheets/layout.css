@@ -40,10 +40,14 @@ ul#queue li {
 	color: #a75d34;
 	border-bottom: 1px dashed #b8a57c;
 	list-style: none;
+	overflow: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 ul#queue li:hover {
-	background-color: #e4e2d0;
+	background-color: #ece3b9;
 }
 
 .spinner {
@@ -56,6 +60,10 @@ ul#queue li a {
 	margin-left: 10px;
 	color: #e6814b;
 	float: right;
+	margin-top: 5px;
+}
+ul#queue li a:hover{
+	color: #e54733;
 }
 ul#results {
 	padding: 0;
@@ -152,6 +160,9 @@ div#content_column {
 	background-color: #a84237;
 	float: left;
 	text-transform: lowercase;
+}
+#content_column div.controls a:hover{
+	background-color: #88342b;
 }
 
 #header h1 {
