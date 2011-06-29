@@ -1,9 +1,11 @@
 javascripts:
   app:
     - public/javascripts/jquery.min.js
-    - public/javascripts/jquery_ujs.js    
-    - public/javascripts/application.js   
-    - public/javascripts/video_search.js         
+    - public/javascripts/jquery_ujs.js
+    - public/javascripts/application.js
+    - public/javascripts/video_search.js
+    - public/javascripts/jScrollPane/jquery.mousewheel.js
+    - public/javascripts/jScrollPane/jquery.jscrollpane.min.js     
 stylesheets:
   app:
     - public/stylesheets/*.css

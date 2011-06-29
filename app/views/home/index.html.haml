@@ -16,8 +16,6 @@
         = song.title
         %small
           %a.remove_from_playlist{:href => '#', :id => song.id} Remove
-        %small
-          = facebook_like("http://www.youtube.com/watch?v=#{song.youtube_id}")
 
   %h2 Add a new 
   %form#video_search
