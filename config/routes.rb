@@ -12,7 +12,7 @@ RoccoLa::Application.routes.draw do
   
   
   
-  match '/add_to_queue' => 'home#add_to_queue'
+  match '/add_to_queue' => 'rooms#add_to_queue'
 
   root :to => "home#index"
   # The priority is based upon order of creation:
