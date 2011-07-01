@@ -3,7 +3,7 @@ RoccoLa::Application.routes.draw do
   resources :songs
   
   resources :rooms do
-    member do
+    collection do
       get 'current'
       get 'next'
       get 'change_song'

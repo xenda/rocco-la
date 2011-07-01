@@ -2,7 +2,7 @@ class RoomsController < InheritedResources::Base
 
   def current
     unless current_room.no_songs_remaining?
-      current_room.load_next_song(@current_time)
+      current_room.songs.first
       play_to = Time.now - current_room.started_at #+ 5.seconds
       render_current_song(play_to)
     else
@@ -38,7 +38,7 @@ class RoomsController < InheritedResources::Base
   
   def render_current_song(play_to)
     render :json => {
-                    :video_id => current_room.current_song, 
+                    :video_id => current_room.songs.first.youtube_id, 
                     :play_to => play_to, 
                     :title => current_room.current_title
                     }

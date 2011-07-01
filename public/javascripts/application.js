@@ -246,7 +246,8 @@ function resumeVideo(){
 
 function loadCurrentVideo(){
   
-  $.getJSON('/songs/current.json', function(data){
+  $.getJSON('/rooms/current.json', function(data){
+    console.log(data);
     loadVideo(data['video_id'],data['play_to']);
     updateTitle(data['title']);
     markLastAsActive(data['video_id']);

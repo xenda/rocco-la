@@ -4,6 +4,8 @@ class Room
   field :name, :type => String
   has_many :users
   embeds_many :songs
+  field :current_song, :type => String
+  field :started_at, :type => DateTime, :default => DateTime.now
   
   REWIND = 0
   
