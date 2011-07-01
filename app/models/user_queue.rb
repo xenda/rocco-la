@@ -4,7 +4,7 @@ class UserQueue
   field :current_song, :type => String
   field :started_at, :type => DateTime
   belongs_to :user
-  has_many :songs
+  # has_many :songs
   
   REWIND = 0
   
