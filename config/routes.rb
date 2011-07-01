@@ -1,12 +1,17 @@
 RoccoLa::Application.routes.draw do
   devise_for :users
-  resources :songs do
-    collection do
+  resources :songs
+  
+  resources :rooms do
+    member do
       get 'current'
       get 'next'
       get 'change_song'
     end
   end
+  
+  
+  
   match '/add_to_queue' => 'home#add_to_queue'
 
   root :to => "home#index"
