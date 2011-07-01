@@ -6,5 +6,8 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :user_queue
+  has_many :songs
 
 end
+
+
