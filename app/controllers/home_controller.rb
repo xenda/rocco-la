@@ -1,13 +1,12 @@
 class HomeController < ApplicationController
 
   def index
-    @current_room = current_room
     # if UserQueue.count==0
     #   UserQueue.create
     # end
     # @queue = UserQueue.last
     # @songs = @queue.songs.reverse
-    @songs = []
+    @songs = current_room.songs
   end
 
   def add_to_queue

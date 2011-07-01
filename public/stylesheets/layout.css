@@ -228,6 +228,10 @@ ul#queue li.current_video a {
 	color: #bf693b;
 }
 
+#room_name {
+  float: left;
+}
+
 /*ul#queue li.current_video:before {
 	content:  "\2713";
 	content: "\2192";
